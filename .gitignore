@@ -14,3 +14,7 @@ __pycache__/
 
 # System files
 .DS_Store
+
+# Milestone 4: trained model weights and generated data
+models/
+data/

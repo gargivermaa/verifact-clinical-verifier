@@ -14,7 +14,7 @@ from pydantic import BaseModel, Field
 from verifact.indexer import ClinicalVectorIndexer
 from verifact.retriever import PremiseRetriever
 from verifact.rules import DeterministicConsistencyChecker
-
+from verifact.local_nli import LocalNLI
 # ---------------------------------------------------------
 # Load Environment & Services
 # ---------------------------------------------------------
@@ -31,6 +31,14 @@ DEFAULT_MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
 indexer = ClinicalVectorIndexer(collection_name="verifact_active_notes")
 retriever = PremiseRetriever(indexer=indexer)
 rule_checker = DeterministicConsistencyChecker()
+MODEL_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "models",
+    "verifact-nli"
+)
+
+local_nli = LocalNLI(MODEL_DIR)
+print(f"[VeriFact] Local NLI model loaded from: {MODEL_DIR}")
 
 # ---------------------------------------------------------
 # Application Setup
@@ -253,9 +261,13 @@ def verify_discharge_summary(req: VerifyRequest):
         premise_text = retrieval_res["premise_text"]
 
         # Step 4a: Semantic NLI
-        nli_out = check_nli_groq(premise_text=premise_text, claim_text=claim.claim_text)
+        nli_out=local_nli.predict(premise_text,claim.claim_text)
         nli_verdict = nli_out["verdict"]
-        reasoning = nli_out["reasoning"]
+        reasoning = (
+            "Trained local DeBERTa NLI prediction. "
+            f"Class probabilities: {nli_out['probs']}"
+        )
+
 
         # Step 4b: Deterministic Rule Check
         rule_verdict, rule_reason = rule_checker.check_claim(

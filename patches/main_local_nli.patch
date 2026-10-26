@@ -1,0 +1,39 @@
+--- a/main.py
++++ b/main.py
+@@ -32,6 +32,14 @@
+ retriever = PremiseRetriever(indexer=indexer)
+ rule_checker = DeterministicConsistencyChecker()
+ 
++# NLI backend: "groq" = zero-shot LLM (M3 baseline), "local" = our fine-tuned DeBERTa (M4 trained model).
++# Claim decomposition still uses Groq in both modes.
++NLI_BACKEND = os.environ.get("NLI_BACKEND", "groq").lower()
++local_nli = None
++if NLI_BACKEND == "local":
++    from verifact.local_nli import LocalNLI
++    local_nli = LocalNLI(os.environ.get("LOCAL_NLI_PATH", "models/verifact-nli"))
++
+ # ---------------------------------------------------------
+ # Application Setup
+ # ---------------------------------------------------------
+@@ -192,6 +200,13 @@
+         return {"verdict": "UNSUPPORTED", "reasoning": f"Groq NLI error: {str(e)}"}
+ 
+ 
++def check_nli(premise_text: str, claim_text: str) -> dict:
++    """Dispatch to the trained local model or the Groq zero-shot baseline."""
++    if local_nli is not None:
++        return local_nli.predict(premise_text, claim_text)
++    return check_nli_groq(premise_text=premise_text, claim_text=claim_text)
++
++
+ # ---------------------------------------------------------
+ # API Endpoints
+ # ---------------------------------------------------------
+@@ -201,6 +216,7 @@
+         "status": "online",
+         "service": "VeriFact Factuality Verifier",
+         "model": DEFAULT_MODEL,
++        "nli_backend": NLI_BACKEND,
+         "vector_store": "Qdrant In-Memory",
+         "embedding_model": "all-MiniLM-L6-v2"
+     }

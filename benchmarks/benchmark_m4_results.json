@@ -1,0 +1,688 @@
+{
+  "n_claims": 40,
+  "retrieval": false,
+  "summary": {
+    "Trained DeBERTa (NLI only)": {
+      "accuracy": 0.95,
+      "macro_f1": 0.9277448941502692,
+      "per_class_f1": {
+        "ENTAILED": 0.9473684210526315,
+        "CONTRADICTED": 0.9787234042553191,
+        "UNSUPPORTED": 0.8571428571428571
+      },
+      "n_correct": 38,
+      "report": {
+        "ENTAILED": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1-score": 0.9473684210526315,
+          "support": 10.0
+        },
+        "CONTRADICTED": {
+          "precision": 0.9583333333333334,
+          "recall": 1.0,
+          "f1-score": 0.9787234042553191,
+          "support": 23.0
+        },
+        "UNSUPPORTED": {
+          "precision": 0.8571428571428571,
+          "recall": 0.8571428571428571,
+          "f1-score": 0.8571428571428571,
+          "support": 7.0
+        },
+        "accuracy": 0.95,
+        "macro avg": {
+          "precision": 0.9384920634920636,
+          "recall": 0.919047619047619,
+          "f1-score": 0.9277448941502692,
+          "support": 40.0
+        },
+        "weighted avg": {
+          "precision": 0.9510416666666668,
+          "recall": 0.95,
+          "f1-score": 0.9496080627099663,
+          "support": 40.0
+        }
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          9,
+          0,
+          1
+        ],
+        [
+          0,
+          23,
+          0
+        ],
+        [
+          0,
+          1,
+          6
+        ]
+      ]
+    },
+    "Trained DeBERTa + Rules": {
+      "accuracy": 0.95,
+      "macro_f1": 0.9277448941502692,
+      "per_class_f1": {
+        "ENTAILED": 0.9473684210526315,
+        "CONTRADICTED": 0.9787234042553191,
+        "UNSUPPORTED": 0.8571428571428571
+      },
+      "n_correct": 38,
+      "report": {
+        "ENTAILED": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1-score": 0.9473684210526315,
+          "support": 10.0
+        },
+        "CONTRADICTED": {
+          "precision": 0.9583333333333334,
+          "recall": 1.0,
+          "f1-score": 0.9787234042553191,
+          "support": 23.0
+        },
+        "UNSUPPORTED": {
+          "precision": 0.8571428571428571,
+          "recall": 0.8571428571428571,
+          "f1-score": 0.8571428571428571,
+          "support": 7.0
+        },
+        "accuracy": 0.95,
+        "macro avg": {
+          "precision": 0.9384920634920636,
+          "recall": 0.919047619047619,
+          "f1-score": 0.9277448941502692,
+          "support": 40.0
+        },
+        "weighted avg": {
+          "precision": 0.9510416666666668,
+          "recall": 0.95,
+          "f1-score": 0.9496080627099663,
+          "support": 40.0
+        }
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          9,
+          0,
+          1
+        ],
+        [
+          0,
+          23,
+          0
+        ],
+        [
+          0,
+          1,
+          6
+        ]
+      ]
+    }
+  },
+  "detailed_results": [
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Metoprolol Tartrate was initiated at 25mg PO BID.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.9999,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.0001
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Metoprolol Tartrate was prescribed at 50mg PO BID.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'metoprolol': Claim specifies 50.0 mg, but source premise records 25.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Patient was discharged directly home with family assistance.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Discharge disposition contradiction: Claim indicates 'home', whereas premise confirms 'facility'.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Sternal incision was healing without signs of surgical site infection.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.9999,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.0001
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Patient was initiated on Warfarin 5mg daily for anticoagulation.",
+      "ground_truth": "UNSUPPORTED",
+      "trained_pred": "UNSUPPORTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 1.0,
+        "CONTRADICTED": 0.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "UNSUPPORTED"
+    },
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Metoprolol Tartrate was initiated at 80mg PO daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'metoprolol': Claim specifies 80.0 mg, but source premise records 25.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Patient was continued on low-dose Aspirin 80mg PO daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'aspirin': Claim specifies 80.0 mg, but source premise records 81.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_cardiology_001",
+      "claim": "Atorvastatin was initiated at 25mg PO at bedtime for lipid management.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0001,
+        "CONTRADICTED": 0.9999
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'atorvastatin': Claim specifies 25.0 mg, but source premise records 80.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_pulmonology_002",
+      "claim": "Patient was prescribed oral Prednisone 40mg daily for 5 days.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.999,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.0009
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_pulmonology_002",
+      "claim": "Prednisone dosage was prescribed at 20mg daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'prednisone': Claim specifies 20.0 mg, but source premise records 40.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_pulmonology_002",
+      "claim": "Follow-up was scheduled in pulmonology clinic in 2 weeks.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.9999,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.0001
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_pulmonology_002",
+      "claim": "Patient was discharged home on continuous 2L nocturnal supplemental oxygen.",
+      "ground_truth": "UNSUPPORTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0001,
+        "UNSUPPORTED": 0.083,
+        "CONTRADICTED": 0.9168
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_pulmonology_002",
+      "claim": "Patient was prescribed Metformin 500mg daily for diabetes management.",
+      "ground_truth": "UNSUPPORTED",
+      "trained_pred": "UNSUPPORTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 1.0,
+        "CONTRADICTED": 0.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "UNSUPPORTED"
+    },
+    {
+      "note_id": "mimic_pulmonology_002",
+      "claim": "Oral Prednisone was tapered starting at 45mg daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'prednisone': Claim specifies 45.0 mg, but source premise records 40.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Patient was transitioned to oral Ciprofloxacin 500mg BID to complete a 10-day course.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.9999,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.0001
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Oral Ciprofloxacin was prescribed at a reduced dose of 250mg BID.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'ciprofloxacin': Claim specifies 250.0 mg, but source premise records 500.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Initial antibiotic coverage was Ceftriaxone 1g IV twice daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0001,
+        "UNSUPPORTED": 0.0002,
+        "CONTRADICTED": 0.9997
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Frequency schedule mismatch for 'ceftriaxone': Claim specifies 'bid', whereas source premise records 'qd'.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Repeat blood cultures demonstrated complete clearance of bacteremia.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.9997,
+        "UNSUPPORTED": 0.0001,
+        "CONTRADICTED": 0.0003
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Serum creatinine remained severely elevated at 3.5 mg/dL at the time of discharge.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'serum': Claim specifies 3.5 mg, but source premise records 2.4 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Initiated on Vancomycin 1.5g IV Q12H for persistent MRSA bacteremia.",
+      "ground_truth": "UNSUPPORTED",
+      "trained_pred": "UNSUPPORTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 1.0,
+        "CONTRADICTED": 0.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "UNSUPPORTED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Initial antibiotic coverage was Ceftriaxone 500mg IV.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Ciprofloxacin was continued at 400mg BID upon clinical improvement.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0001,
+        "CONTRADICTED": 0.9999
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'ciprofloxacin': Claim specifies 400.0 mg, but source premise records 500.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_infectious_003",
+      "claim": "Serum creatinine normalized to 1.4 mg/dL at discharge.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0001,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.9999
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'serum': Claim specifies 1.4 mg, but source premise records 2.4 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Patient transitioned to subcutaneous Insulin Glargine 20 units at bedtime.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.9999,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.0001
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Basal Insulin Glargine was prescribed at 40 units at bedtime.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'insulin': Claim specifies 40.0 units, but source premise records 4.0 units.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Anion gap closed to 10 prior to transition to subcutaneous insulin.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.5833,
+        "UNSUPPORTED": 0.0015,
+        "CONTRADICTED": 0.4151
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Patient was discharged home on oral Metformin 1000mg twice daily.",
+      "ground_truth": "UNSUPPORTED",
+      "trained_pred": "UNSUPPORTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 1.0,
+        "CONTRADICTED": 0.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "UNSUPPORTED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Patient was discharged on subcutaneous Semaglutide (Ozempic) 0.5mg weekly.",
+      "ground_truth": "UNSUPPORTED",
+      "trained_pred": "UNSUPPORTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 1.0,
+        "CONTRADICTED": 0.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "UNSUPPORTED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Patient was transitioned to Insulin Glargine 4 units at bedtime.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Patient was started on basal Insulin Glargine 22 units at bedtime.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'insulin': Claim specifies 22.0 units, but source premise records 4.0 units.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Insulin Lispro was initiated at 6 units TID with meals.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'insulin': Claim specifies 6.0 units, but source premise records 4.0 units.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_endocrinology_004",
+      "claim": "Initial serum bicarbonate was 14 mEq/L on presentation.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'serum': Claim specifies 14.0 meq, but source premise records 12.0 meq.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "Secondary stroke prevention initiated with Clopidogrel 75mg PO daily.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "UNSUPPORTED",
+      "trained_probs": {
+        "ENTAILED": 0.0002,
+        "UNSUPPORTED": 0.9997,
+        "CONTRADICTED": 0.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "UNSUPPORTED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "Patient was initiated on high-dose Clopidogrel 150mg PO daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'clopidogrel': Claim specifies 150.0 mg, but source premise records 75.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "Patient was discharged directly home with outpatient therapy.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Discharge disposition contradiction: Claim indicates 'home', whereas premise confirms 'facility'.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "Patient received IV Alteplase within 2.5 hours of symptom onset.",
+      "ground_truth": "ENTAILED",
+      "trained_pred": "ENTAILED",
+      "trained_probs": {
+        "ENTAILED": 0.9999,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 0.0001
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "ENTAILED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "Started on Amiodarone 200mg daily for new-onset atrial fibrillation.",
+      "ground_truth": "UNSUPPORTED",
+      "trained_pred": "UNSUPPORTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 1.0,
+        "CONTRADICTED": 0.0
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "UNSUPPORTED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "Atorvastatin was initiated at 75mg PO daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'atorvastatin': Claim specifies 75.0 mg, but source premise records 80.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "Atorvastatin was started at moderate-intensity 40mg PO daily.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0,
+        "UNSUPPORTED": 0.0,
+        "CONTRADICTED": 1.0
+      },
+      "rule_pred": "CONTRADICTED",
+      "rule_reason": "Dosage mismatch for 'atorvastatin': Claim specifies 40.0 mg, but source premise records 80.0 mg.",
+      "trained_plus_rules_pred": "CONTRADICTED"
+    },
+    {
+      "note_id": "mimic_neurology_005",
+      "claim": "NIHSS score was 14 on initial presentation.",
+      "ground_truth": "CONTRADICTED",
+      "trained_pred": "CONTRADICTED",
+      "trained_probs": {
+        "ENTAILED": 0.0001,
+        "UNSUPPORTED": 0.0001,
+        "CONTRADICTED": 0.9998
+      },
+      "rule_pred": null,
+      "rule_reason": null,
+      "trained_plus_rules_pred": "CONTRADICTED"
+    }
+  ]
+}
